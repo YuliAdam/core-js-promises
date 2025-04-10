@@ -78,8 +78,10 @@ function getFirstResolvedPromiseResult(promises) {
  * [promise3, promise6, promise2] => Promise rejected with 2
  * [promise3, promise4, promise6] => Promise rejected with 6
  */
-function getFirstPromiseResult(/* promises */) {
-  throw new Error('Not implemented');
+function getFirstPromiseResult(promise) {
+  return Promise.any(promise)
+    .then((res) => res)
+    .catch(() => 'Promise rejected');
 }
 
 /**
